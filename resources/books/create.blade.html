@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add New Book</title>
+</head>
+<body>
+    
+    <h1>Add New Book</h1>
+
+    <form action="index.blade.php" method="POST">
+
+        <label>Title:</label>
+        <input type="text" name="title" value="" required> <br>
+        <label>Author:</label>
+        <input type="text" name="author" value="" required> <br>
+        <label>Description:</label>
+        <textarea name="description" required> </textarea><br>
+        <label>ISBN:</label>
+        <input type="text" name="isbn" value="{{ old('isbn') }}" required><br>
+        <label>Published Year:</label>
+        <input type="number" name="published_year" value="{{ old('published_year') }}" required><br>
+        <button type="submit">Add Book</button>
+    </form>
+
+    <a href="routes/web.php">Back to Catalog</a>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Book</title>
+</head>
+<body>
+    <h1>Edit Book</h1>
+
+    <form action="{{ route('books.update', $book->id) }}" method="POST">
+       
+        <label>Title:</label>
+        <input type="text" name="title" value="{{ $book->title }}" required><br>
+        <label>Author:</label>
+        <input type="text" name="author" value="{{ $book->author }}" required><br>
+        <label>Description:</label>
+        <textarea name="description" required>{{ $book->description }}</textarea><br>
+        <label>ISBN:</label>
+        <input type="text" name="isbn" value="{{ $book->isbn }}" required><br>
+        <label>Published Year:</label>
+        <input type="number" name="published_year" value="{{ $book->published_year }}" required><br>
+        <button type="submit">Update Book</button>
+    </form>
+
+    <a href="{{ route('books.index') }}">Back to Catalog</a>
+</body>
+</html>
